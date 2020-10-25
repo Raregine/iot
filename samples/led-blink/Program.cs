@@ -14,7 +14,7 @@ namespace led_blink
 {
     class Program
     {
-        private string hubmessage = "empty"; 
+        public string hubmessage = "empty"; 
         //device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
         private const string ModuleConnectionString = "HostName=dev-iotsolution-iothub.azure-devices.net;DeviceId=EdgePi;ModuleId=ledblink;SharedAccessKey=EQ84KKRsUrCUfuOb3lpolFd0vg/y/VHbSOtf8OU/g+Y=";
         private static ModuleClient Client = null;
