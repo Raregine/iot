@@ -14,6 +14,7 @@ namespace led_blink
 {
     class Program
     {
+        private string hubmessage = "empty"; 
         //device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
         private const string ModuleConnectionString = "HostName=dev-iotsolution-iothub.azure-devices.net;DeviceId=EdgePi;ModuleId=ledblink;SharedAccessKey=EQ84KKRsUrCUfuOb3lpolFd0vg/y/VHbSOtf8OU/g+Y=";
         private static ModuleClient Client = null;
@@ -75,6 +76,7 @@ namespace led_blink
                 Console.WriteLine($"Dim for {dimTime}ms");
                 controller.Write(pin, PinValue.Low);
                 Thread.Sleep(dimTime);
+                Console.WriteLine(hubmessage); 
             }
         }
 
@@ -83,6 +85,7 @@ namespace led_blink
         {
             Console.WriteLine("desired property change:");
             Console.WriteLine(JsonConvert.SerializeObject(desiredProperties));
+            hubmessage = desiredProperties["somedata"];
             Console.WriteLine("Sending current time as reported property");
             TwinCollection reportedProperties = new TwinCollection
             {
