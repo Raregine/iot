@@ -39,8 +39,7 @@ namespace led_blink
 
             try
             {
-                Client =
-                  ModuleClient.CreateFromConnectionString(ModuleConnectionString, transport);
+                Client = ModuleClient.CreateFromConnectionString(ModuleConnectionString, transport);
                 Client.SetConnectionStatusChangesHandler(ConnectionStatusChangeHandler);
                 Client.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null).Wait();
 
@@ -63,7 +62,7 @@ namespace led_blink
 
             Console.WriteLine("Waiting for Events.  Press enter to exit...");
             Console.ReadLine();
-            Client.CloseAsync().Wait();
+            //Client.CloseAsync().Wait();
             // End device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
 
             // turn LED on and off
