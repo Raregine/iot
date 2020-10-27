@@ -21,7 +21,7 @@ namespace led_blink
         public static int DesiredDimTime { get; set; } = dimTime;
 
         //device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
-        private const string ModuleConnectionString = "HostName=dev-iotsolution-iothub.azure-devices.net;DeviceId=EdgePi;ModuleId=ledblink;SharedAccessKey=EQ84KKRsUrCUfuOb3lpolFd0vg/y/VHbSOtf8OU/g+Y=";
+        private const string ModuleConnectionString = "<module connection string>";
         private static ModuleClient Client = null;
         static void ConnectionStatusChangeHandler(ConnectionStatus status,
           ConnectionStatusChangeReason reason)
