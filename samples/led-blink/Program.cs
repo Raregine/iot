@@ -18,7 +18,7 @@ namespace led_blink
         private const int lightTime = 1000;
         private const int dimTime = 200; 
         private const int pin = 18; 
-        public static int DesiredLightTime { get; set; } = lighTime;
+        public static int DesiredLightTime { get; set; } = lightTime;
         public static int DesiredDimTime { get; set; } = dimTime;
 
         //device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
