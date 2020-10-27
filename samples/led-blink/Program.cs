@@ -15,12 +15,12 @@ namespace led_blink
     class Program
     {
         //public static string hubmessage = "empty"; 
-        private const double lightTime = 1000;
-        private const double dimTime = 200; 
-        private const double pin = 18; 
-        public static double DesiredLightTime { get; set; } = lightime;
-        public static double DesiredDimTime { get; set; } = dimTime;
-        
+        private const int lightTime = 1000;
+        private const int dimTime = 200; 
+        private const int pin = 18; 
+        public static int DesiredLightTime { get; set; } = lighTime;
+        public static int DesiredDimTime { get; set; } = dimTime;
+
         //device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
         private const string ModuleConnectionString = "HostName=dev-iotsolution-iothub.azure-devices.net;DeviceId=EdgePi;ModuleId=ledblink;SharedAccessKey=EQ84KKRsUrCUfuOb3lpolFd0vg/y/VHbSOtf8OU/g+Y=";
         private static ModuleClient Client = null;
