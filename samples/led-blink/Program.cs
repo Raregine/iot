@@ -14,7 +14,13 @@ namespace led_blink
 {
     class Program
     {
-        public static string hubmessage = "empty"; 
+        //public static string hubmessage = "empty"; 
+        private const double lightTime = 1000;
+        private const double dimTime = 200; 
+        private const double pin = 18; 
+        public static double DesiredLightTime { get; set; } = lightime;
+        public static double DesiredDimTime { get; set; } = dimTime;
+        
         //device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
         private const string ModuleConnectionString = "HostName=dev-iotsolution-iothub.azure-devices.net;DeviceId=EdgePi;ModuleId=ledblink;SharedAccessKey=EQ84KKRsUrCUfuOb3lpolFd0vg/y/VHbSOtf8OU/g+Y=";
         private static ModuleClient Client = null;
@@ -26,9 +32,9 @@ namespace led_blink
         }
         static void Main(string[] args)
         {
-            var pin = 18;
-            var lightTime = 1000;
-            var dimTime = 200;
+            //var pin = 18;
+            //var lightTime = 1000;
+            //var dimTime = 200;
 
             Console.WriteLine($"Let's blink an LED!");
             using GpioController controller = new GpioController();
@@ -69,14 +75,13 @@ namespace led_blink
             // turn LED on and off
             while (true)
             {
-                Console.WriteLine($"Light for {lightTime}ms");
+                Console.WriteLine($"Light for {DesiredLightTime}ms");
                 controller.Write(pin, PinValue.High);
-                Thread.Sleep(lightTime);
+                Thread.Sleep(DesiredLightTime);
 
-                Console.WriteLine($"Dim for {dimTime}ms");
+                Console.WriteLine($"Dim for {DesiredDimTime}ms");
                 controller.Write(pin, PinValue.Low);
-                Thread.Sleep(dimTime);
-                Console.WriteLine(hubmessage); 
+                Thread.Sleep(DesiredDimTime);
             }
         }
 
@@ -85,7 +90,8 @@ namespace led_blink
         {
             Console.WriteLine("desired property change:");
             Console.WriteLine(JsonConvert.SerializeObject(desiredProperties));
-            hubmessage = desiredProperties["somedata"];
+            DesiredLightTime = desiredProperties["LightTime"];
+            DesiredDimTime = desiredProperties["DimTime"];
             Console.WriteLine("Sending current time as reported property");
             TwinCollection reportedProperties = new TwinCollection
             {
