@@ -14,10 +14,9 @@ namespace led_blink
 {
     class Program
     {
-        //public static string hubmessage = "empty"; 
         private const int lightTime = 1000;
-        private const int dimTime = 200; 
-        private const int pin = 18; 
+        private const int dimTime = 200;
+        private const int pin = 18;
         public static int DesiredLightTime { get; set; } = lightTime;
         public static int DesiredDimTime { get; set; } = dimTime;
 
@@ -32,10 +31,6 @@ namespace led_blink
         }
         static void Main(string[] args)
         {
-            //var pin = 18;
-            //var lightTime = 1000;
-            //var dimTime = 200;
-
             Console.WriteLine($"Let's blink an LED!");
             using GpioController controller = new GpioController();
             controller.OpenPin(pin, PinMode.Output);
@@ -69,7 +64,7 @@ namespace led_blink
 
             Console.WriteLine("Waiting for Events.  Press enter to exit...");
             Console.ReadLine();
-            //Client.CloseAsync().Wait();
+            //Client.CloseAsync().Wait(); //comment out to keep Client connection open
             // End device twin code from https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-csharp-csharp-module-twin-getstarted
 
             // turn LED on and off
